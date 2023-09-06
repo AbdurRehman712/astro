@@ -7,6 +7,7 @@ import deno from "@astrojs/deno";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), alpinejs()],
-  output: "server",
-  adapter: deno()
+  
+  // output: "server",
+  // adapter: deno()
 });
