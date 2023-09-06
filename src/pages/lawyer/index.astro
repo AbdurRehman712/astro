@@ -1,0 +1,42 @@
+---
+// Component Imports
+import Main from "../../layouts/main.astro";
+import Card from "../../components/Card.astro";
+
+const res = await fetch(
+  "https://wooqlaw.com/en-pk/api/LawyerSearchsListing/GetPaginatedItems?CountryId=1&CurrentIndex=1&RowsPerPage=10&UsePagination=True"
+);
+const data = await res.json();
+const lawyers = data.items;
+---
+
+<Main title="Lawyers">
+	<div class="container md:px-4 max-w-7xl">
+		<div class="my-2 px-2 md:my-4">
+			<nav class="mb-3 hidden md:block" aria-label="Breadcrumb">
+			  <ol class="inline-flex items-center space-x-1 md:space-x-3">
+				<li class="inline-flex items-center">
+				  <a href="en-pk/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:hover:text-white"
+					><svg aria-hidden="true" class="mr-2 h-5 w-5" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.7069 2.79279C10.5194 2.60532 10.2651 2.5 9.99992 2.5C9.73475 2.5 9.48045 2.60532 9.29292 2.79279L2.29292 9.79279C2.11076 9.98139 2.00997 10.234 2.01224 10.4962C2.01452 10.7584 2.11969 11.0092 2.3051 11.1946C2.49051 11.38 2.74132 11.4852 3.00352 11.4875C3.26571 11.4897 3.51832 11.3889 3.70692 11.2068L3.99992 10.9138V17.4998C3.99992 17.765 4.10528 18.0194 4.29281 18.2069C4.48035 18.3944 4.7347 18.4998 4.99992 18.4998H6.99992C7.26514 18.4998 7.51949 18.3944 7.70703 18.2069C7.89456 18.0194 7.99992 17.765 7.99992 17.4998V15.4998C7.99992 15.2346 8.10528 14.9802 8.29281 14.7927C8.48035 14.6051 8.7347 14.4998 8.99992 14.4998H10.9999C11.2651 14.4998 11.5195 14.6051 11.707 14.7927C11.8946 14.9802 11.9999 15.2346 11.9999 15.4998V17.4998C11.9999 17.765 12.1053 18.0194 12.2928 18.2069C12.4803 18.3944 12.7347 18.4998 12.9999 18.4998H14.9999C15.2651 18.4998 15.5195 18.3944 15.707 18.2069C15.8946 18.0194 15.9999 17.765 15.9999 17.4998V10.9138L16.2929 11.2068C16.4815 11.3889 16.7341 11.4897 16.9963 11.4875C17.2585 11.4852 17.5093 11.38 17.6947 11.1946C17.8801 11.0092 17.9853 10.7584 17.9876 10.4962C17.9899 10.234 17.8891 9.98139 17.7069 9.79279L10.7069 2.79279Z" fill="#374151"></path></svg>
+		  
+					Home
+				  </a>
+				</li>
+				<li aria-current="page">
+				  <div class="flex items-center">
+					<svg aria-hidden="true" class="h-6 w-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+					<span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Find Lawyer</span>
+				  </div>
+				</li>
+			  </ol>
+			</nav>
+			<h1 class="line-clamp-1 text-left text-xs font-medium text-black md:text-xl">121 Best lawyer(s) found</h1>
+		  </div>
+		  
+	
+	  <div class="flex w-full flex-col gap-3 py-3">
+		{lawyers.map((i) => <Card lawyer={i} />)}
+	  </div>
+	</div>
+
+</Main>

@@ -1,0 +1,84 @@
+---
+// Component Imports
+import Main from '../../layouts/main.astro';
+
+export async function getStaticPaths() {
+
+	const res = await fetch(`https://wooqlaw.com/en-pk/api/ProfileDetailsListing/GetPaginatedItems?CurrentIndex=1&RowsPerPage=10&UsePagination=True&ProfileId=024bc225-888b-4b03-7ba1-08db50a4fbaa`);
+	const data = await res.json();
+	const lawyerdetail =  data.items;
+	return lawyerdetail.map((detail) => ({
+		params: { id: detail.id },
+		props: detail,
+	}));
+}
+
+const detail = Astro.props;
+---
+
+<Main title={detail.name}>
+		<main class="min-h-[calc(100dvh)] max-w-3xl mx-auto py-3">
+			<section class="flex flex-col gap-1 md:gap-3 main font-display">
+				<section class="container max-w-7xl md:px-4 card mx-auto"><div class="flex flex-col gap-2"><div class="flex flex-col justify-between w-full gap-3 p-3 bg-white md:flex-row md:p-5 md:drop-shadow md:rounded-xl aos-init aos-animate" data-aos="fade-in" data-aos-delay="100"><div class="flex items-center gap-5"><div class="relative flex">
+			<div class="w-20 h-20 md:w-36 md:h-36 text-3xl md:text-5xl  rounded-md relative flex items-center justify-center shrink-0">
+				<img class="w-20 h-20 md:w-36 md:h-36 text-3xl md:text-5xl object-cover rounded-md" transition:name={`img-${detail.id}`} 
+				src="https://wooqlaw.com/_content/Kartoa.Framework.MicroUIs/images/avatar-new.svg" alt="Maaz Ahmed Warrich " onerror="this.onerror='_content/Kartoa.Framework.MicroUIs/images/avatar-new.svg';this.src='_content/Kartoa.Framework.MicroUIs/images/avatar-new.svg';"></div></div>
+
+			<div class="flex flex-col gap-2 md:gap-5"><div class="flex flex-col gap-1">
+				<div class="flex items-center gap-2">
+					<h2 transition:name={`name-${detail.id}`} class="text-base font-normal text-black md:text-xl md:font-medium truncate">{detail.name} </h2>
+				</div>
+
+					<h3 transition:name={`title-${detail.id}`} class="text-2xs font-normal text-gray-500 md:text-sm truncate ">Advocate</h3></div>
+
+				<div class="flex items-center gap-1"></div></div></div></div></div></section>
+
+
+<section class="container max-w-7xl md:px-4 mx-auto profile-tabs mb-3 aos-init aos-animate" data-aos="fade-in" data-aos-delay="50"><div class="justify-between w-full"><ul class="flex flex-col w-full gap-1 mb-1 text-sm md:text-sm font-medium md:gap-px md:overflow-x-auto md:flex-row md:flex-nowrap md:rounded-t-xl border-b border-gray-100 profile-nav " x-tabs:list=""><li class="basis-auto shrink-0 grow-0 md:grow hidden md:block"><a href="/en-pk/lawyer/profile/overview/maaz+ahmed+warrich/01b5c480-ced4-4115-a0fe-08db3412c044" class="text-violet-600 border-violet-700 flex items-center justify-between gap-1 px-2 py-4 bg-white md:justify-center md:border-b-2 md:px-4">
+	<div class="flex items-center gap-1"><svg class="w-5 h-5 md:w-6 md:h-6 shrink-0" viewBox="0 0 25 24" fill="currentcolor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.666 4H14.666C18.4373 4 20.3229 4 21.4944 5.17157C22.666 6.34315 22.666 8.22876 22.666 12C22.666 15.7712 22.666 17.6569 21.4944 18.8284C20.3229 20 18.4373 20 14.666 20H10.666C6.89478 20 5.00916 20 3.83759 18.8284C2.66602 17.6569 2.66602 15.7712 2.66602 12C2.66602 8.22876 2.66602 6.34315 3.83759 5.17157C5.00916 4 6.89478 4 10.666 4ZM13.916 9C13.916 8.58579 14.2518 8.25 14.666 8.25H19.666C20.0802 8.25 20.416 8.58579 20.416 9C20.416 9.41421 20.0802 9.75 19.666 9.75H14.666C14.2518 9.75 13.916 9.41421 13.916 9ZM14.916 12C14.916 11.5858 15.2518 11.25 15.666 11.25H19.666C20.0802 11.25 20.416 11.5858 20.416 12C20.416 12.4142 20.0802 12.75 19.666 12.75H15.666C15.2518 12.75 14.916 12.4142 14.916 12ZM15.916 15C15.916 14.5858 16.2518 14.25 16.666 14.25H19.666C20.0802 14.25 20.416 14.5858 20.416 15C20.416 15.4142 20.0802 15.75 19.666 15.75H16.666C16.2518 15.75 15.916 15.4142 15.916 15ZM11.666 9C11.666 10.1046 10.7706 11 9.66602 11C8.56145 11 7.66602 10.1046 7.66602 9C7.66602 7.89543 8.56145 7 9.66602 7C10.7706 7 11.666 7.89543 11.666 9ZM9.66602 17C13.666 17 13.666 16.1046 13.666 15C13.666 13.8954 11.8752 13 9.66602 13C7.45688 13 5.66602 13.8954 5.66602 15C5.66602 16.1046 5.66602 17 9.66602 17Z"></path></svg>
+
+					<span>Overview</span></div>
+				
+					<svg class="md:hidden" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.09327 3.69344C7.35535 3.46881 7.74991 3.49916 7.97455 3.76124L12.9745 9.59457C13.1752 9.82863 13.1752 10.174 12.9745 10.4081L7.97455 16.2414C7.74991 16.5035 7.35535 16.5338 7.09327 16.3092C6.83119 16.0845 6.80084 15.69 7.02548 15.4279L11.6768 10.0013L7.02548 4.57472C6.80084 4.31265 6.83119 3.91808 7.09327 3.69344Z" fill="#4B5563"></path></svg></a></li>
+
+	   
+		<li class="basis-auto shrink-0 grow-0 md:grow"><a href="/en-pk/lawyer/profile/practiceportfolio/maaz+ahmed+warrich/01b5c480-ced4-4115-a0fe-08db3412c044" class="text-gray-600 border-white flex items-center justify-between gap-1 px-2 py-4 bg-white md:justify-center md:border-b-2 md:px-4">
+			<div class="flex items-center gap-1"><svg class="w-6 h-6 shrink-0" viewBox="0 0 25 24" fill="currentcolor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.41406 12V8C2.41406 5.17157 2.41406 3.75736 3.29274 2.87868C4.17142 2 5.58563 2 8.41406 2H16.4141C19.2425 2 20.6567 2 21.5354 2.87868C22.4141 3.75736 22.4141 5.17157 22.4141 8V12C22.4141 14.8284 22.4141 16.2426 21.5354 17.1213C20.889 17.7677 19.9528 17.9386 18.377 17.9838C18.3734 17.248 18.1178 16.5132 17.6102 15.9176C17.5815 15.8839 17.5641 15.842 17.5606 15.7979C17.4352 14.2264 16.1873 12.9785 14.6158 12.8531C14.5717 12.8496 14.5298 12.8322 14.4961 12.8035C13.2963 11.781 11.5315 11.781 10.3316 12.8035C10.2979 12.8322 10.256 12.8496 10.2119 12.8531C8.64045 12.9785 7.39256 14.2264 7.26716 15.7979C7.26364 15.842 7.24629 15.8839 7.21758 15.9176C6.71001 16.5132 6.45439 17.248 6.45073 17.9838C4.87517 17.9386 3.93907 17.7677 3.29274 17.1213C2.41406 16.2426 2.41406 14.8284 2.41406 12ZM8.66406 6C8.66406 5.58579 8.99985 5.25 9.41406 5.25H15.4141C15.8283 5.25 16.1641 5.58579 16.1641 6C16.1641 6.41421 15.8283 6.75 15.4141 6.75H9.41406C8.99985 6.75 8.66406 6.41421 8.66406 6ZM7.41406 8.75C6.99985 8.75 6.66406 9.08579 6.66406 9.5C6.66406 9.91421 6.99985 10.25 7.41406 10.25H17.4141C17.8283 10.25 18.1641 9.91421 18.1641 9.5C18.1641 9.08579 17.8283 8.75 17.4141 8.75H7.41406Z"></path>
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M13.5232 13.9452C12.884 13.4004 11.9438 13.4004 11.3045 13.9452C11.0306 14.1786 10.69 14.3197 10.3312 14.3483C9.49403 14.4152 8.82921 15.08 8.7624 15.9172C8.73377 16.276 8.59269 16.6165 8.35925 16.8905C7.81449 17.5297 7.81449 18.4699 8.35925 19.1092C8.59269 19.3831 8.73377 19.7237 8.7624 20.0824C8.82921 20.9197 9.49403 21.5845 10.3312 21.6513C10.69 21.6799 11.0306 21.821 11.3045 22.0544C11.9438 22.5992 12.884 22.5992 13.5232 22.0544C13.7972 21.821 14.1377 21.6799 14.4965 21.6513C15.3337 21.5845 15.9985 20.9197 16.0654 20.0824C16.094 19.7237 16.2351 19.3831 16.4685 19.1092C17.0133 18.4699 17.0133 17.5297 16.4685 16.8905C16.2351 16.6165 16.094 16.276 16.0654 15.9172C15.9985 15.08 15.3337 14.4152 14.4965 14.3483C14.1377 14.3197 13.7972 14.1786 13.5232 13.9452ZM14.4258 17.5483C14.7286 17.2657 14.745 16.7911 14.4624 16.4883C14.1797 16.1855 13.7051 16.1691 13.4023 16.4517L11.7712 17.9741L11.4258 17.6517C11.123 17.3691 10.6484 17.3855 10.3658 17.6883C10.0831 17.9911 10.0995 18.4657 10.4023 18.7483L11.2595 19.5483C11.5476 19.8172 11.9948 19.8172 12.2829 19.5483L14.4258 17.5483Z"></path></svg>
+				<span>Practice Portfolio</span></div>
+				
+				<svg class="md:hidden" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.09327 3.69344C7.35535 3.46881 7.74991 3.49916 7.97455 3.76124L12.9745 9.59457C13.1752 9.82863 13.1752 10.174 12.9745 10.4081L7.97455 16.2414C7.74991 16.5035 7.35535 16.5338 7.09327 16.3092C6.83119 16.0845 6.80084 15.69 7.02548 15.4279L11.6768 10.0013L7.02548 4.57472C6.80084 4.31265 6.83119 3.91808 7.09327 3.69344Z" fill="#4B5563"></path></svg></a></li></ul>
+
+	<div class="bg-white min-h-[calc(100dvh-10rem)]"><div class="overview-tab">
+
+
+
+
+<div class="grid w-full grid-cols-1 gap-3 md:gap-5 p-2 md:grid-cols-3 md:p-5 aos-init aos-animate" data-aos="fade-in">
+	<div class="flex relative items-center gap-2 px-1 md:hidden"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 relative" preserveAspectRatio="xMidYMid meet"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C22 6.34315 22 8.22876 22 12C22 15.7712 22 17.6569 20.8284 18.8284C19.6569 20 17.7712 20 14 20H10C6.22876 20 4.34315 20 3.17157 18.8284C2 17.6569 2 15.7712 2 12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4ZM13.25 9C13.25 8.58579 13.5858 8.25 14 8.25H19C19.4142 8.25 19.75 8.58579 19.75 9C19.75 9.41421 19.4142 9.75 19 9.75H14C13.5858 9.75 13.25 9.41421 13.25 9ZM14.25 12C14.25 11.5858 14.5858 11.25 15 11.25H19C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H15C14.5858 12.75 14.25 12.4142 14.25 12ZM15.25 15C15.25 14.5858 15.5858 14.25 16 14.25H19C19.4142 14.25 19.75 14.5858 19.75 15C19.75 15.4142 19.4142 15.75 19 15.75H16C15.5858 15.75 15.25 15.4142 15.25 15ZM11 9C11 10.1046 10.1046 11 9 11C7.89543 11 7 10.1046 7 9C7 7.89543 7.89543 7 9 7C10.1046 7 11 7.89543 11 9ZM9 17C13 17 13 16.1046 13 15C13 13.8954 11.2091 13 9 13C6.79086 13 5 13.8954 5 15C5 16.1046 5 17 9 17Z" fill="#7C3AED"></path></svg>
+<p class="text-xs font-medium text-left text-violet-600">Overview</p></div>
+<section class="flex flex-col items-start w-full gap-3 md:gap-10 about md:col-span-2 order-2 md:order-1"><div class="flex flex-col w-full gap-2">
+	<h2 class="p-2 text-sm font-medium text-gray-500 md:text-lg py-1 md:py-2 px-2">
+		Experience
+	</h2>
+	<div class="p-3 text-xs font-medium text-gray-900 rounded-lg md:text-base bg-gray-50 md:p-5"><h2>3 Years</h2></div></div><div class="flex flex-col w-full gap-1 md:gap-2">
+		<h2 class="p-2 text-sm font-medium text-gray-500 md:text-lg py-1 md:py-2 px-2">
+	Services
+</h2>
+	<div class="p-3 text-xs font-medium text-gray-900 rounded-lg md:text-base bg-gray-50 md:p-5"><h2>Criminal Law | Civil Law | Corporate Law</h2></div></div><div class="flex flex-col w-full gap-1 md:gap-2">
+		<h2 class="p-2 text-sm font-medium text-gray-500 md:text-lg py-1 md:py-2 px-2">
+	Address &amp; Location
+</h2>
+	<div class="flex-col gap-5 p-3 text-base font-medium text-gray-700 rounded-lg bg-gray-50 md:p-5"><div class="address-Suit #2, Arshad Plaza, 2nd Floor 83A, Temple Road,"><h2 class="text-xs font-medium text-gray-900 md:text-base">Suit #2, Arshad Plaza, 2nd Floor 83A, Temple Road,, Lahore office, Lahore</h2></div></div></div><div class="flex flex-col w-full gap-1 md:gap-2">
+		<h2 class="p-2 text-sm font-medium text-gray-500 md:text-lg py-1 md:py-2 px-2">
+	Languages
+</h2>
+	<div class="p-3 text-xs font-medium text-gray-900 rounded-lg md:text-base bg-gray-50 md:p-5"><h2>English | Urdu</h2>
+
+		<h2></h2></div></div>
+	</section>
+
+<section class="view-contact flex flex-col md:col-span-1 items-start mt-3 md:mt-9 gap-2.5 w-full order-1 md:order-2"></section></div></div>
+
+		<div class="portfolio-tab"></div></div></div></section></section></main>
+</Main>
