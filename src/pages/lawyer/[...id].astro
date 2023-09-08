@@ -4,7 +4,7 @@ import Main from '../../layouts/main.astro';
 
 export async function getStaticPaths() {
 
-	const res = await fetch(`https://wooqlaw.com/en-pk/api/ProfileDetailsListing/GetPaginatedItems?CurrentIndex=1&RowsPerPage=10&UsePagination=True&ProfileId=024bc225-888b-4b03-7ba1-08db50a4fbaa`);
+	const res = await fetch(`https://wooqlaw.com/en-pk/api/LawyerSearchsListing/GetPaginatedItems?CountryId=1&CurrentIndex=1&RowsPerPage=10&UsePagination=True`);
 	const data = await res.json();
 	const lawyerdetail =  data.items;
 	return lawyerdetail.map((detail) => ({
@@ -14,22 +14,29 @@ export async function getStaticPaths() {
 }
 
 const detail = Astro.props;
+
+const { id } =  Astro.params
+// const postItem = await fetch(`https://wooqlaw.com/en-pk/api/ProfileDetailsListing/GetPaginatedItems?CurrentIndex=1&RowsPerPage=10&UsePagination=True&ProfileId=${id}`).then(x  => x.json())
+const postItem = await fetch(`https://wooqlaw.com/en-pk/api/ProfileDetailsListing/GetPaginatedItems?CurrentIndex=1&RowsPerPage=10&UsePagination=True&ProfileId=${id}`);
+const data = await postItem.json();
+const lawyerdetail =  data.items;
+
 ---
 
-<Main title={detail.name}>
+<Main title={lawyerdetail[0].name}>
 		<main class="min-h-[calc(100dvh)] max-w-4xl mx-auto py-3">
 			<section class="flex flex-col gap-1 md:gap-3 main font-display">
 				<section class="container max-w-4xl md:px-4 card mx-auto"><div class="flex flex-col gap-2"><div class="flex flex-col justify-between w-full gap-3 p-3 bg-white md:flex-row md:p-5 md:drop-shadow md:rounded-xl aos-init aos-animate" data-aos="fade-in" data-aos-delay="100"><div class="flex items-center gap-5"><div class="relative flex">
 			<div class="w-20 h-20 md:w-36 md:h-36 text-3xl md:text-5xl  rounded-md relative flex items-center justify-center shrink-0">
-				<img class="w-20 h-20 md:w-36 md:h-36 text-3xl md:text-5xl object-cover rounded-md" transition:name={`img-${detail.id}`} 
+				<img class="w-20 h-20 md:w-36 md:h-36 text-3xl md:text-5xl object-cover rounded-md" transition:name={`img-${lawyerdetail[0].id}`} 
 				src="https://wooqlaw.com/_content/Kartoa.Framework.MicroUIs/images/avatar-new.svg" alt="Maaz Ahmed Warrich " onerror="this.onerror='_content/Kartoa.Framework.MicroUIs/images/avatar-new.svg';this.src='_content/Kartoa.Framework.MicroUIs/images/avatar-new.svg';"></div></div>
 
 			<div class="flex flex-col gap-2 md:gap-5"><div class="flex flex-col gap-1">
 				<div class="flex items-center gap-2">
-					<h2 transition:name={`name-${detail.id}`} class="text-base font-normal text-black md:text-xl md:font-medium truncate">{detail.name} </h2>
+					<h2 transition:name={`name-${lawyerdetail[0].id}`} class="text-base font-normal text-black md:text-xl md:font-medium truncate">{lawyerdetail[0].name} </h2>
 				</div>
 
-					<h3 transition:name={`title-${detail.id}`} class="text-2xs font-normal text-gray-500 md:text-sm truncate ">Advocate</h3></div>
+					<h3 transition:name={`title-${lawyerdetail[0].id}`} class="text-2xs font-normal text-gray-500 md:text-sm truncate ">{lawyerdetail[0].jobTitle}</h3></div>
 
 				<div class="flex items-center gap-1"></div></div></div></div></div></section>
 

@@ -1,5 +1,7 @@
 {
-  "npx": { "noInstall": true },
+  "npx": {
+    "noInstall": true
+  },
   "name": "astro-tailwind",
   "type": "module",
   "version": "0.0.1",
@@ -12,8 +14,8 @@
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.3.0",
-    "@astrojs/deno": "^5.0.0",
     "@astrojs/mdx": "^1.0.0",
+    "@astrojs/netlify": "^3.0.1",
     "@astrojs/tailwind": "^5.0.0",
     "@types/alpinejs": "^3.7.2",
     "@types/canvas-confetti": "^1.6.0",
